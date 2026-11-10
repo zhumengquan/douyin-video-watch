@@ -137,9 +137,14 @@ facts:
     t: null
     kind: desc
     detail: 简介原文「本次分析显示平均速度0.93m/s、峰值1.99m/s，平均功率732W、峰值1563W」
+  - aweme_id: '7701674563184369216'
+    author: Arcus VBT
+    t: null
+    kind: desc
+    detail: 简介原文「本次分析显示平均速度0.91m/s、峰值1.75m/s，峰值功率2202W」； 同条视频画面汇总卡只有 PEAK V 1.75 与 ROM 52.5，无平均速度、无功率
   status: active
   note: 这条的价值不在数值，在于信息源差异：Peak V 两处都能拿到（且一致 1.99，互为印证）， 但 Mean V / 功率只存在于简介文字里，画面上读不到。 也就是说「面板给什么」和「简介给什么」不是包含关系，各有一部分独占。
     引用功率数据时要知道：它无法从画面上复核。
   first_seen: '2026-11-10'
   last_seen: '2026-11-10'
-  confidence: 0.5
+  confidence: 0.7

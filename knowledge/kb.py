@@ -172,17 +172,26 @@ def cmd_absorb(args):
             continue
 
         fn, fact = idx[fid]
-        same = str(fact.get("value")) == str(item.get("value"))
-        if same:
+
+        def _merge():
+            """把新来源并进已有 fact 并落盘。三个分支共用，别各写一份。"""
             n = merge_sources(fact, item.get("sources") or [])
             fact["last_seen"] = now()
             fact["confidence"] = recompute_confidence(fact)
-            path = os.path.join(KB, "facts", fn)
-            box = read_yaml_or(path, {"facts": []})
-            for k, f in enumerate(box["facts"]):
+            p = os.path.join(KB, "facts", fn)
+            b = read_yaml_or(p, {"facts": []})
+            for k, f in enumerate(b["facts"]):
                 if f["id"] == fid:
-                    box["facts"][k] = fact
-            write_yaml(path, box)
+                    b["facts"][k] = fact
+            write_yaml(p, b)
+            return n
+
+        # 只追加来源、不改值的情况：item 里干脆不带 value。
+        # 这是最常见的用法（新视频印证了老结论），不该被当成"值不一致"拦下来。
+        # 以前这里硬比 str(None) vs str(旧值)，一定会报冲突，踩过。
+        has_value = "value" in item and item.get("value") is not None
+        if not has_value or str(fact.get("value")) == str(item.get("value")):
+            n = _merge()
             if n:
                 merged.append(f"{fid} (+{n} 来源 → conf {fact['confidence']})")
             else:
