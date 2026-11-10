@@ -223,7 +223,12 @@ def cmd_revise(args):
         probe = prev[1]
         if gen > 50:      # 防环
             break
-    base_id = args.fact_id.split(".v")[0]
+    # 去掉已有的版本后缀，得到基础 id。
+    # 注意不能用 args.fact_id.split(".v")[0] —— 对 "barbell.velocity_by_lift_type"
+    # 这种不含 .v 的 id，它会切在第一个 "." 上，把 id 砍成 "barbell"，
+    # 生成出 "barbell.v2" 这种丢了主体的名字（踩过）。
+    import re as _re
+    base_id = _re.sub(r"\.v\d+$", "", args.fact_id)
     new_fact = {
         "id": new.get("new_id") or f"{base_id}.v{gen}",
         "claim": new["claim"],

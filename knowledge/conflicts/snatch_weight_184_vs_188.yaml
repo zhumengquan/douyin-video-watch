@@ -1,0 +1,18 @@
+id: snatch_weight_184_vs_188
+topic: barbell
+summary: 土库曼斯坦选手这次抓举的重量，简介写 188kg，赛场大屏写 184kg
+positions:
+- label: 简介说 188kg
+  facts: []
+  evidence: 视频简介文案写「188kg抓举：钻杠接稳到头顶站起」，并说选手为 shaxzad.m
+  source_kind: desc
+- label: 大屏说 184kg
+  facts:
+  - barbell.desc_weight_mismatch_184
+  evidence: t=7.0 赛场大屏「ATTEMPT 1」下方绿色数字块清晰可读为「184 kg」， 选手背心印 TKM。同一画面里数字块前后还有被裁掉的「0 kg」「8 4 k」残片， 但完整可读的那一块是
+    184
+  source_kind: frame
+why_it_matters: 两种可能都成立：(1) 简介把重量写错了（4kg 的笔误或记错）； (2) 大屏是赛前亮出的申报重量，实际加重后没更新。 在拿到赛事成绩单之前无法裁决，按 DESIGN.md
+  挂 unresolved。 引用这条视频时，重量必须写成「184（画面）/188（简介）」而不是二选一。
+resolution: unresolved
+opened: '2026-11-10'

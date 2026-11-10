@@ -17,8 +17,101 @@ facts:
     t: 4.88
     kind: frame
     detail: 抓举 91kg Peak V 1.77
-  status: active
+  status: superseded
   confidence: 0.7
   note: 平均速度与峰值速度不是同一指标，此处对比只为说明量级差异，不可直接用于评估训练水平
   first_seen: '2026-11-10'
   last_seen: '2026-11-10'
+  superseded_by: barbell.velocity_by_lift_type.v2
+  superseded_on: '2026-11-10'
+  superseded_reason: 原结论说「深蹲 0.3-0.4、抓举 1.7，量级差 4-5 倍」，容易被读成 「深蹲比抓举慢 4-5 倍」。这是错的：4-5 倍主要是 Mean 与 Peak
+    的口径差， 而不是动作本身的速度差。同一套面板对深蹲输出 Mean V、对举重输出 Peak V， 两个指标定义不同（一个是全程平均，一个是一瞬间的最大值）， 放在一起比大小没有意义。改为把「口径不同，不可比」作为结论本身。
+- id: barbell.peak_v_single_lifts
+  claim: 单次举重动作的峰值速度：170kg 垫上抓举 2.08、80kg 抓举 1.99、128kg 分腿挺 1.75、175kg 高翻 1.72 m/s
+  value:
+    block_snatch_170: 2.08
+    snatch_80: 1.99
+    split_jerk_128: 1.75
+    power_clean_175: 1.72
+  unit: m/s
+  topic: barbell
+  sources:
+  - aweme_id: '7701644393312533347'
+    author: Arcus VBT
+    t: 0.0
+    kind: frame
+    detail: 汇总卡「170 KG × 1 REP」PEAK V BY REP 柱 2.08，ROM 75.3
+  - aweme_id: '7701805639253320611'
+    author: Arcus VBT
+    t: 0.0
+    kind: frame
+    detail: 汇总卡「80 KG × 1 REP」PEAK V 1.99，ROM 96.3
+  - aweme_id: '7701674563184369216'
+    author: Arcus VBT
+    t: 0.0
+    kind: frame
+    detail: 汇总卡「128 KG × 1 REP」PEAK V 1.75，ROM 52.5
+  - aweme_id: '7701883121691817704'
+    author: Arcus VBT
+    t: 6.38
+    kind: frame
+    detail: 汇总卡「175 KG × 1 REP」PEAK V 1.72，ROM 100.4
+  status: active
+  note: ROM 与速度不成正比：分腿挺 ROM 仅 52.5 却有 1.75，抓举 ROM 96.3 是 1.99。 说明峰值速度主要由动作爆发性决定，不是行程长度。
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'
+  confidence: 0.85
+- id: barbell.desc_weight_mismatch_184
+  claim: 该条视频简介写「188kg 抓举」，但赛场大屏显示 184 kg
+  value:
+    desc: 188
+    screen: 184
+  unit: kg
+  topic: barbell
+  sources:
+  - aweme_id: '7701898803649395816'
+    author: Arcus VBT
+    t: 7.0
+    kind: frame
+    detail: 赛场大屏「ATTEMPT 1」下方绿色数字块为「184 kg」，选手背心印 TKM（土库曼斯坦）
+  status: disputed
+  confidence: 0.3
+  note: 简介与画面差 4kg。简介是创作者写的文字，大屏是赛事现场设备输出， 两者都不是第三方复核。按 DESIGN.md 口径标 disputed，不替任何一方圆场。
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'
+- id: barbell.velocity_by_lift_type.v2
+  claim: 深蹲报 Mean V（约 0.3–0.5 m/s）、举重报 Peak V（约 1.7–2.1 m/s），两者口径不同，不可直接比较速度高低
+  value:
+    squat_mean: 0.3-0.5
+    lift_peak: 1.7-2.1
+    note: 口径不同
+  unit: m/s
+  topic: barbell
+  sources:
+  - aweme_id: '7702400712127814888'
+    author: Arcus VBT
+    t: 15.0
+    kind: frame
+    detail: 深蹲面板口径写明「Mean V (m/s)」，235kg 第1次 0.41
+  - aweme_id: '7701392102367223907'
+    author: Arcus VBT
+    t: 4.88
+    kind: frame
+    detail: 抓举面板口径为「Peak V (m/s)」，91kg 为 1.77
+  - aweme_id: '7701805639253320611'
+    author: Arcus VBT
+    t: 0.0
+    kind: frame
+    detail: 抓举 80kg 汇总卡写明「PEAK V BY REP」，值 1.99
+  - aweme_id: '7701644393312533347'
+    author: Arcus VBT
+    t: 0.0
+    kind: frame
+    detail: 垫上抓举 170kg 汇总卡「PEAK V BY REP」2.08
+  status: active
+  supersedes: barbell.velocity_by_lift_type
+  note: 原结论说「深蹲 0.3-0.4、抓举 1.7，量级差 4-5 倍」，容易被读成 「深蹲比抓举慢 4-5 倍」。这是错的：4-5 倍主要是 Mean 与 Peak 的口径差， 而不是动作本身的速度差。同一套面板对深蹲输出
+    Mean V、对举重输出 Peak V， 两个指标定义不同（一个是全程平均，一个是一瞬间的最大值）， 放在一起比大小没有意义。改为把「口径不同，不可比」作为结论本身。
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'
+  confidence: 0.85

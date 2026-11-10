@@ -116,9 +116,243 @@ facts:
     t: 28.25
     kind: frame
     detail: 对比 1/3 的 0.41 与 3/3 的 0.27
-  status: active
+  status: superseded
   supersedes: vbt.squat_velocity_decay_235kg
   note: 原 fact 只记了三个数值，没有给出"这意味着什么"。VBT 的用途恰恰是看衰减，故把结论补进来，旧条保留为原始观测。
   first_seen: '2026-11-10'
   last_seen: '2026-11-10'
   confidence: 0.5
+  superseded_by: vbt.squat_velocity_decay_235kg.v3
+  superseded_on: '2026-11-10'
+  superseded_reason: 原 v2 的结论是「235kg 衰减 34%，属明显疲劳信号」，把单组数据说成了规律。 本轮又拿到 4 组不同重量次数的深蹲数据：衰减从 10%（140kg×4）到
+    53%（150kg×2）， 差距 5 倍；其中 140kg×4 那一组第3次速度还回升了（0.40→0.47），并非单调下降。 所以「34% 是明显疲劳」这个判断缺乏参照系 —— 34% 落在这个区间中段，
+    既不算特别高也不算低。结论应改为：衰减幅度跨组差异极大，且可非单调， 单看首末比值不足以判定疲劳，需要同一个人同一重量的纵向基线。
+- id: vbt.squat_decay_170kg_5reps
+  claim: 高杠背蹲 170kg×5，Mean V 依次 0.42 / 0.41 / 0.36 / 0.26 m/s，首末衰减 38%
+  value:
+  - 0.42
+  - 0.41
+  - 0.36
+  - 0.26
+  unit: m/s
+  topic: vbt
+  sources:
+  - aweme_id: '7703165681998526818'
+    author: Arcus VBT
+    t: 5.75
+    kind: frame
+    detail: 面板「高杠背蹲 170kg 1/5」Mean V (m/s) = 0.42；底部髋角53° 膝角56° 踝角71°
+  - aweme_id: '7703165681998526818'
+    author: Arcus VBT
+    t: 20.5
+    kind: frame
+    detail: 面板「170kg 5/5」Mean V = 0.26，轨迹图 5 条线，第1条标★为基准
+  status: active
+  note: 与 235kg×3 那条同口径（Mean V），可直接对比。衰减 38% 大于 235kg 的 34%
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'
+  confidence: 0.5
+- id: vbt.squat_decay_150kg_2reps
+  claim: 高杠背蹲 150kg×2，Mean V 从 0.38 掉到 0.18 m/s，衰减 53%
+  value:
+  - 0.38
+  - 0.18
+  unit: m/s
+  topic: vbt
+  sources:
+  - aweme_id: '7701960886928794600'
+    author: Arcus VBT
+    t: 18.75
+    kind: frame
+    detail: 面板「高杠背蹲 150kg 2/2」Mean V (m/s) = 0.18，轨迹区 2 条线
+  status: active
+  note: 只有 2 次就掉 53%，与「次数越多衰减越大」的直觉相反。 推测是该运动员 150kg 已接近极限，第2次濒临失败。单样本，不能当规律。
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'
+  confidence: 0.5
+- id: vbt.squat_decay_140kg_4reps
+  claim: 高杠背蹲 140kg×4，逐次平均速度 0.50 / 0.40 / 0.47 / 0.45 m/s，速度损失 10%
+  value:
+  - 0.5
+  - 0.4
+  - 0.47
+  - 0.45
+  unit: m/s
+  topic: vbt
+  sources:
+  - aweme_id: '7702871918802693218'
+    author: Arcus VBT
+    t: 16.0
+    kind: frame
+    detail: 面板「高杠背蹲 140kg 1/4」速度损失 0%，逐次平均速度柱状图首柱 0.50
+  - aweme_id: '7702871918802693218'
+    author: Arcus VBT
+    t: 26.62
+    kind: frame
+    detail: 面板「140kg 3/4」速度损失 6%，三柱 0.50 / 0.40 / 0.47
+  - aweme_id: '7702871918802693218'
+    author: Arcus VBT
+    t: 32.25
+    kind: frame
+    detail: 面板「140kg 4/4」速度损失 10%，四柱 0.50 / 0.40 / 0.47 / 0.45
+  status: active
+  note: ⚠ 这组不是单调下降：第3次(0.47)比第2次(0.40)回升。 「速度衰减」在真实数据里可以非单调，不能假设单调。
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'
+  confidence: 0.5
+- id: vbt.squat_loss_165kg_3reps
+  claim: 高杠背蹲 165kg×3，逐次平均 0.44 / 0.41 / 0.32 m/s，第2次损失 7%、第3次损失 28%
+  value:
+  - 0.44
+  - 0.41
+  - 0.32
+  unit: m/s
+  topic: vbt
+  sources:
+  - aweme_id: '7703952581567452008'
+    author: Arcus VBT
+    t: 0.0
+    kind: frame
+    detail: 汇总卡「165 KG × 3 REPS / 逐次平均速度」柱状图 0.44/0.41/0.32； 表格 REP 01-03，ROM 64.6/64.2/66.1，速度 0.44/0.41/0.32，损失
+      -/↓7%/↓28%
+  status: active
+  note: 该条同时给出 ROM，可与深蹲/高翻/抓举的 ROM 横向对照
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'
+  confidence: 0.5
+- id: vbt.squat_loss_130kg_5reps
+  claim: 低杠背蹲 130kg×5，面板结算速度损失 24%
+  value: 24
+  unit: percent
+  topic: vbt
+  sources:
+  - aweme_id: '7703775508215004032'
+    author: Arcus VBT
+    t: 19.5
+    kind: frame
+    detail: 面板「低杠背蹲 130kg 5/5」绿色大字 24、标签「速度损失 (%)」；轨迹 5 条，第1条标★
+  status: active
+  note: 逐次速度未在画面上以列表形式给出，只有侧边实时瞬时速度（分「离心/向心」）， 故本条只取结算的损失百分比，不臆测逐次值
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'
+  confidence: 0.5
+- id: vbt.panel_shows_rom_per_rep
+  claim: Arcus 面板在每次试举后会给出 ROM（杠铃行程）数值，与速度同列
+  value: true
+  unit: null
+  topic: vbt
+  sources:
+  - aweme_id: '7703952581567452008'
+    author: Arcus VBT
+    t: 0.0
+    kind: frame
+    detail: 深蹲 165kg×3 的 ROM 为 64.6 / 64.2 / 66.1
+  - aweme_id: '7701883121691817704'
+    author: Arcus VBT
+    t: 6.38
+    kind: frame
+    detail: 高翻 175kg×1 的 ROM 为 100.4
+  - aweme_id: '7701674563184369216'
+    author: Arcus VBT
+    t: 0.0
+    kind: frame
+    detail: 分腿挺 128kg×1 的 ROM 为 52.5
+  status: active
+  note: 深蹲 ROM 约 64-66，抓举约 96，高翻约 100，分腿挺仅 52.5。 ROM 是行程不是强度指标，不能用来比不同动作的难度。
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'
+  confidence: 0.8
+- id: vbt.panel_joint_angles
+  claim: Arcus 面板会叠加关节角度读数（髋/膝/踝）并在左侧画角度-时间曲线
+  value: true
+  unit: null
+  topic: vbt
+  sources:
+  - aweme_id: '7703165681998526818'
+    author: Arcus VBT
+    t: 5.75
+    kind: frame
+    detail: 170kg 深蹲底部 髋角53° 膝角56° 踝角71°
+  - aweme_id: '7703775508215004032'
+    author: Arcus VBT
+    t: 6.12
+    kind: frame
+    detail: 130kg 低杠深蹲
+  - aweme_id: '7703775508215004032'
+    author: Arcus VBT
+    t: 19.5
+    kind: frame
+    detail: 面板写明「底部：髋角80° 膝角50°」，顶部 髋角149° 膝角175°
+  status: active
+  note: 角度越大越接近站立伸直（膝175°≈完全伸直），越小越屈曲
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'
+  confidence: 0.7
+- id: vbt.panel_speed_index_is_instantaneous
+  claim: 面板侧边的 m/s 标签是实时瞬时速度、按阶段区分（离心/向心），不是该次的最终平均速度
+  value: true
+  unit: null
+  topic: vbt
+  sources:
+  - aweme_id: '7703775508215004032'
+    author: Arcus VBT
+    t: 5.88
+    kind: frame
+    detail: 同一第1次动作，5.88s 显示 0.66 m/s、6.12s 显示 0.70 m/s，数值随动作进行变化
+  - aweme_id: '7703775508215004032'
+    author: Arcus VBT
+    t: 18.75
+    kind: frame
+    detail: 第5次上升途中 1.37 m/s（绿色标签），远超该组平均水平
+  - aweme_id: '7702871918802693218'
+    author: Arcus VBT
+    t: 26.62
+    kind: frame
+    detail: 标签完整为「1.00 m/s · 离心」，明确标了阶段
+  status: active
+  note: ⚠ 这条推翻了「侧边 m/s 就是该次成绩」的读法。 要拿逐次速度，必须看「逐次平均速度」列表或汇总卡，不能抄侧边标签。
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'
+  confidence: 0.7
+- id: vbt.squat_velocity_decay_235kg.v3
+  claim: 深蹲连续多次的速度衰减幅度在 10%–53% 之间大幅波动，且不保证单调，不能只看首末比值判定疲劳
+  value:
+    min_pct: 10
+    max_pct: 53
+    n_sets: 5
+  unit: percent
+  topic: vbt
+  sources:
+  - aweme_id: '7702400712127814888'
+    author: Arcus VBT
+    t: 28.25
+    kind: frame
+    detail: 235kg×3 由 0.41 掉到 0.27，衰减 34%
+  - aweme_id: '7703165681998526818'
+    author: Arcus VBT
+    t: 20.5
+    kind: frame
+    detail: 170kg×5 由 0.42 掉到 0.26，衰减 38%
+  - aweme_id: '7701960886928794600'
+    author: Arcus VBT
+    t: 18.75
+    kind: frame
+    detail: 150kg×2 由 0.38 掉到 0.18，衰减 53%
+  - aweme_id: '7702871918802693218'
+    author: Arcus VBT
+    t: 32.25
+    kind: frame
+    detail: 140kg×4 由 0.50 到 0.45，官方结算损失仅 10%；且逐次 0.50/0.40/0.47/0.45 非单调
+  - aweme_id: '7703952581567452008'
+    author: Arcus VBT
+    t: 0.0
+    kind: frame
+    detail: 165kg×3 由 0.44 到 0.32，官方结算损失 28%
+  status: active
+  supersedes: vbt.squat_velocity_decay_235kg.v2
+  note: 原 v2 的结论是「235kg 衰减 34%，属明显疲劳信号」，把单组数据说成了规律。 本轮又拿到 4 组不同重量次数的深蹲数据：衰减从 10%（140kg×4）到 53%（150kg×2），
+    差距 5 倍；其中 140kg×4 那一组第3次速度还回升了（0.40→0.47），并非单调下降。 所以「34% 是明显疲劳」这个判断缺乏参照系 —— 34% 落在这个区间中段， 既不算特别高也不算低。结论应改为：衰减幅度跨组差异极大，且可非单调，
+    单看首末比值不足以判定疲劳，需要同一个人同一重量的纵向基线。
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'
+  confidence: 0.85
