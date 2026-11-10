@@ -1,0 +1,16 @@
+id: jerk_189_validity
+topic: vbt
+summary: 挺举 189kg 这一把到底算不算成功，简介和画面给出了相反的信号
+positions:
+- label: 简介说失败
+  facts: []
+  evidence: 视频简介文案写明这一把被判无效（具体措辞见 aweme 7702067773120424768 的 desc 字段）
+  source_kind: desc
+- label: 画面说成功
+  facts:
+  - vbt.jerk_peak_v_189kg
+  evidence: 判分牌显示 GOOD LIFT，三盏灯中一白一红（非全红）；面板照常给出「上挺峰值速度 1.45」
+  source_kind: frame
+why_it_matters: 同一把试举，文本层和视觉层给出相反结论。任何"到底成功没有"的推断都必须先说明站在哪一层证据上
+resolution: unresolved
+opened: '2026-11-10'

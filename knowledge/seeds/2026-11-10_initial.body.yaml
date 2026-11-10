@@ -1,0 +1,127 @@
+facts:
+  - id: vbt.squat_velocity_decay_235kg
+    claim: 高杠背蹲 235kg 连续 3 次，平均速度依次为 0.41 / 0.36 / 0.27 m/s，单调下降
+    value: [0.41, 0.36, 0.27]
+    unit: m/s
+    topic: vbt
+    sources:
+      - aweme_id: "7702400712127814888"
+        author: Arcus VBT
+        t: 15.0
+        kind: frame
+        detail: 面板显示「高杠背蹲 235kg 1/3」Mean V = 0.41
+      - aweme_id: "7702400712127814888"
+        author: Arcus VBT
+        t: 24.0
+        kind: frame
+        detail: 面板显示 2/3，Mean V = 0.36，轨迹图累计两条
+      - aweme_id: "7702400712127814888"
+        author: Arcus VBT
+        t: 28.25
+        kind: frame
+        detail: 面板显示 3/3，Mean V = 0.27
+    status: active
+    confidence: 0.5
+    note: 单条视频内三次采样；绝对值只在同一台设备同一设置下可比
+    first_seen: "2026-11-10"
+    last_seen: "2026-11-10"
+
+  - id: vbt.snatch_peak_v_91kg
+    claim: 抓举 91kg 的峰值速度（Peak V）为 1.77 m/s
+    value: 1.77
+    unit: m/s
+    topic: vbt
+    sources:
+      - aweme_id: "7701392102367223907"
+        author: Arcus VBT
+        t: 4.88
+        kind: frame
+        detail: 赛场大屏「ZHAO Jinhong 91kg Peak V 1.77」与 App 面板数值一致
+      - aweme_id: "7701392102367223907"
+        author: Arcus VBT
+        t: 8.88
+        kind: frame
+        detail: 汇总卡 PEAK V 1.77 / REPS 01 / ROM 85.4 / SPEED 1.77
+    status: active
+    confidence: 0.5
+    note: 两个独立显示源（官方大屏 + App 面板）互相印证，这是本事实可信的主要依据
+    first_seen: "2026-11-10"
+    last_seen: "2026-11-10"
+
+  - id: vbt.snatch_peak_v_92kg
+    claim: 抓举 92kg（李盛金）的峰值速度为 1.74 m/s
+    value: 1.74
+    unit: m/s
+    topic: vbt
+    sources:
+      - aweme_id: "7701392102367223907"
+        author: Arcus VBT
+        t: 15.12
+        kind: frame
+        detail: 面板 1.74，汇总卡「92 KG × 1 REP PEAK V 1.74 ROM 86.3」
+    status: active
+    confidence: 0.5
+    note: null
+    first_seen: "2026-11-10"
+    last_seen: "2026-11-10"
+
+  - id: vbt.jerk_peak_v_189kg
+    claim: 挺举 189kg 的「上挺峰值速度」为 1.45 m/s
+    value: 1.45
+    unit: m/s
+    topic: vbt
+    sources:
+      - aweme_id: "7702067773120424768"
+        author: Arcus VBT
+        t: 21.62
+        kind: frame
+        detail: 面板标签完整为「上挺峰值速度 (m/s)」，值 1.45；仅指 jerk 阶段，非全程
+    status: active
+    confidence: 0.5
+    note: 早期误读为「平均速度」，实为动作某阶段峰值，标签在画面右侧小字
+    first_seen: "2026-11-10"
+    last_seen: "2026-11-10"
+
+  - id: barbell.velocity_by_lift_type
+    claim: 深蹲类动作平均速度约 0.3-0.4 m/s，抓举峰值速度约 1.7 m/s，量级差约 4-5 倍
+    value: {"squat_mean": "0.3-0.4", "snatch_peak": "1.7+"}
+    unit: m/s
+    topic: barbell
+    sources:
+      - aweme_id: "7702400712127814888"
+        author: Arcus VBT
+        t: 15.0
+        kind: frame
+        detail: 深蹲 235kg Mean V 0.41
+      - aweme_id: "7701392102367223907"
+        author: Arcus VBT
+        t: 4.88
+        kind: frame
+        detail: 抓举 91kg Peak V 1.77
+    status: active
+    confidence: 0.5
+    note: 平均速度与峰值速度不是同一指标，此处对比只为说明量级差异，不可直接用于评估训练水平
+    first_seen: "2026-11-10"
+    last_seen: "2026-11-10"
+
+  - id: vbt.bar_path_accumulates_per_rep
+    claim: Arcus 面板的杠铃轨迹图会逐次累计叠加，第 2 次显示 2 条轨迹线
+    value: true
+    unit: null
+    topic: vbt
+    sources:
+      - aweme_id: "7702400712127814888"
+        author: Arcus VBT
+        t: 15.0
+        kind: frame
+        detail: 1/3 时轨迹区 1 条绿线
+      - aweme_id: "7702400712127814888"
+        author: Arcus VBT
+        t: 24.0
+        kind: frame
+        detail: 2/3 时轨迹区 2 条绿线，第 1 次的仍保留
+    status: active
+    confidence: 0.5
+    note: null
+    first_seen: "2026-11-10"
+    last_seen: "2026-11-10"

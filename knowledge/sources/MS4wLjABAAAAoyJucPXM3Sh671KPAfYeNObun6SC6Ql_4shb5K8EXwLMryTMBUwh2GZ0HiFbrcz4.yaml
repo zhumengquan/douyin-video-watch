@@ -1,0 +1,24 @@
+sec_uid: MS4wLjABAAAAoyJucPXM3Sh671KPAfYeNObun6SC6Ql_4shb5K8EXwLMryTMBUwh2GZ0HiFbrcz4
+nickname: Arcus VBT
+topic: vbt
+reliability: 0.6
+why_this_reliability: 面板数据来自其自家设备，属「我方产物」，不是第三方独立复现。数值本身可信 （画面里官方大屏与 App 面板互相印证），但博主只发成功或接近达标的试举， 存在明显的挑选偏差，故不给更高。
+known_bias:
+- 只发达标或接近达标的试举，失败镜头极少
+- 设备是自家产品，展示方式带营销色彩
+- 简介文案可能与画面矛盾（见 conflict jerk_189_validity）
+observed:
+- aweme_id: '7702400712127814888'
+  first_seen: '2026-11-10'
+  note: 高杠背蹲 235kg×3，含逐次 Mean V 面板与轨迹累计
+- aweme_id: '7701392102367223907'
+  first_seen: '2026-11-10'
+  note: 抓举 91/92kg，赛场大屏 + App 面板双显示源
+- aweme_id: '7702067773120424768'
+  first_seen: '2026-11-10'
+  note: 挺举 189kg，简介与画面判分牌结论相反
+- aweme_id: '7702623416915748105'
+  first_seen: '2026-11-10'
+  note: 见该条视频元数据
+first_seen: '2026-11-10'
+last_seen: '2026-11-10'

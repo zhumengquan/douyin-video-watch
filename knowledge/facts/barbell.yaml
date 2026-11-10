@@ -1,0 +1,24 @@
+facts:
+- id: barbell.velocity_by_lift_type
+  claim: 深蹲类动作平均速度约 0.3-0.4 m/s，抓举峰值速度约 1.7 m/s，量级差约 4-5 倍
+  value:
+    squat_mean: 0.3-0.4
+    snatch_peak: 1.7+
+  unit: m/s
+  topic: barbell
+  sources:
+  - aweme_id: '7702400712127814888'
+    author: Arcus VBT
+    t: 15.0
+    kind: frame
+    detail: 深蹲 235kg Mean V 0.41
+  - aweme_id: '7701392102367223907'
+    author: Arcus VBT
+    t: 4.88
+    kind: frame
+    detail: 抓举 91kg Peak V 1.77
+  status: active
+  confidence: 0.7
+  note: 平均速度与峰值速度不是同一指标，此处对比只为说明量级差异，不可直接用于评估训练水平
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'

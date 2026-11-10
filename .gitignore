@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 抓取产生的临时数据（体积大、可重新拉取、且可能含账号态）
+_test/
+*.mp4
+*.webm
+*.mp3
+*.m4a
+
+# 抽帧产物：几百张 png，绝不入库
+frames/
+sheet_*.jpg
+contact_sheet*.jpg
+
+# 临时输入文件（kb.py 的 --file 参数常常指向这些）
+knowledge/_tmp_*.yaml
+knowledge/_tmp_*.json
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 本地个人配置
+*.local
+.env
