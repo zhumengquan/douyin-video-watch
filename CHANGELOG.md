@@ -5,6 +5,52 @@
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-11-10
+
+**为换机器执行做准备。** 这一版几乎没加新功能，全是「让另一台机器上的 agent
+读完文件就能接手」的工程改动。
+
+### Added
+
+- **`HANDOFF.md`** —— 接手说明。前因后果、四条坑、当前进度、下一步任务，
+  30 秒版本在最前面。**换机器第一份要读的就是它。**
+- **`PLAN.md`** —— 刷视频计划。三阶段（换领域验通用性 / 补纵向数据 / 找失败样本），
+  含每批 11 项执行清单和"这轮算成功吗"的判据。
+- **`scripts/setup_env.py`** —— 环境自检与一键安装。
+  `--check` 只体检，不带参数则缺什么装什么。
+  检查 python / playwright / chromium / numpy / Pillow / requests / pyyaml / ffmpeg。
+- **`scripts/ffmpeg_locator.py`** —— 共享的 ffmpeg 定位，
+  按 `FFMPEG_BIN` → PATH → `imageio-ffmpeg` → Windows 通用位置 顺序查找。
+- **`requirements.txt`** —— 依赖清单，含镜像安装说明。
+- fact `barbell.desc_has_power_not_on_panel`：简介与画面**不是包含关系**。
+  Peak V 两处一致可互校，但 Mean V 和功率只在简介里，画面无法复核。
+
+### Changed
+
+- **SKILL.md 开头加「第一次用？按这个顺序读」表格**，明确六份文档的阅读顺序。
+- 「环境依赖」整节重写，**去掉了所有本机路径**，改为指向 `setup_env.py`。
+- `references/douyin-tech-notes.md` 的环境基线表改用相对路径描述，
+  并注明「换机器不要照抄路径，跑 setup_env 拿真实状态」。
+- 文档里写明 `sample_frames.py` 输出会多一层 `frames/` **是既有约定不是 bug**。
+
+### Removed
+
+- 三处硬编码的 `C:\Users\04kt-13\WorkBuddy\2026-09-22-...\ffmpeg.exe`。
+  `douyin_fetch.py` 和 `sample_frames.py` 各有一份 `find_ffmpeg`，
+  两份都写死了上一台机器的工程目录 —— 换机器后两处同时失效、报错还不一样。
+  现在合并成一个模块。
+
+### 验证
+
+在干净目录里复制整个 skill 后实测：
+
+| 项 | 结果 |
+|---|---|
+| `setup_env.py --check` | 🟢 全部就绪，exit=0 |
+| `kb.py check`（系统 python / venv 都试过） | 20 facts，problems 为空 |
+| 四个脚本 `--help` | 全部 OK |
+| **真实抓取一条视频** | 成功，1.41 MB，`author_sec_uid` 正常输出 |
+
 ## [0.4.0] - 2026-11-10
 
 第一次用知识树自由浏览：14 条视频 → 19 条 fact，两处结论被推翻并留痕。

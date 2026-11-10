@@ -224,17 +224,16 @@ def parse_aweme(body):
 
 
 def find_ffmpeg():
-    env = os.environ.get("FFMPEG_BIN")
-    if env and os.path.exists(env):
-        return env
-    for p in os.environ.get("PATH", "").split(os.pathsep):
-        c = os.path.join(p, "ffmpeg.exe")
-        if os.path.exists(c):
-            return c
-    for c in (r"C:\Users\04kt-13\WorkBuddy\2026-09-22-11-24-42\tools\ffmpeg\bin\ffmpeg.exe",):
-        if os.path.exists(c):
-            return c
-    return None
+    """找 ffmpeg。逻辑统一在 ffmpeg_locator 里，这里只做转发。
+
+    原来这里硬编码了本机某个工程目录，换机器就失效。
+    """
+    try:
+        from ffmpeg_locator import find_ffmpeg as _f
+    except ImportError:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from ffmpeg_locator import find_ffmpeg as _f
+    return _f()
 
 
 def download(ffmpeg, url, out_path):

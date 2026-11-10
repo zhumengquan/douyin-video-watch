@@ -1,16 +1,18 @@
 # 知识树索引
 
 > 给 agent 启动时读的极简入口。细节去 `facts/` `topics/` `conflicts/` `sources/` 里找。
-> 最近更新：2026-11-10（第二轮自由浏览，共看过 14 条视频）
+> 最近更新：2026-11-10（共看过 14 条视频）
+>
+> **接手这个知识树的人，先读 `../HANDOFF.md` 和 `../PLAN.md`。**
 
 ## 现在有哪些主题
 
 | 主题 | facts | 状态 | 一句话 |
 |---|---|---|---|
 | `vbt` | 15 条（12 active / 2 disputed / 3 superseded） | 有骨架 | 举重用杠铃速度判疲劳；深蹲衰减 5 组样本，幅度 10%–53% |
-| `barbell` | 4 条（3 active / 1 disputed / 1 superseded） | 起步 | 四种动作的 Peak V 与 ROM；ROM 与速度不成正比 |
+| `barbell` | 5 条（4 active / 1 disputed / 1 superseded） | 起步 | 四种动作的 Peak V 与 ROM；ROM 与速度不成正比 |
 
-合计 **19 条 fact**，2 个未解冲突，1 个来源档案。
+合计 **20 条 fact**，2 个未解冲突，1 个来源档案。
 
 ## 必须先知道的冲突
 
@@ -35,6 +37,9 @@
   要逐次速度，必须看「逐次平均速度」列表或汇总卡。
 - **`barbell.velocity_by_lift_type.v2`** —— 深蹲报 **Mean V**、举重报 **Peak V**，
   量级差 4–5 倍主要是**口径差**，不是动作差。跨动作比速度 = 错的。
+- **`barbell.desc_has_power_not_on_panel`** —— 简介和画面**不是包含关系**，
+  各有独占信息：Peak V 两边都有且一致；但 Mean V、平均/峰值功率**只在简介里**，
+  画面上读不到、也无法复核。
 
 ## 数据成熟度（诚实版）
 

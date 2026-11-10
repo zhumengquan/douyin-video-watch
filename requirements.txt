@@ -1,0 +1,20 @@
+# douyin-video-watch 依赖
+# 安装（国内必须走镜像，直连 pypi 会卡死）：
+#   python -m pip install --no-cache-dir \
+#     -i https://mirrors.tencent.com/pypi/simple/ \
+#     --trusted-host mirrors.tencent.com -r requirements.txt
+#
+# 装完还要装浏览器二进制（也要走镜像）：
+#   PLAYWRIGHT_DOWNLOAD_HOST=https://npmmirror.com/mirrors/playwright \
+#     python -m playwright install chromium
+#
+# 或者直接跑：python scripts/setup_env.py
+
+playwright>=1.40
+requests>=2.28
+numpy>=1.24
+Pillow>=10.0
+pyyaml>=6.0
+
+# 可选：ffmpeg 找不到时的备选（附带静态编译版，不需要系统安装）
+# imageio-ffmpeg>=0.4

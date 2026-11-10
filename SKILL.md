@@ -8,9 +8,28 @@ agent_created: true
 
 ## 这个 skill 在做什么
 
-把一条抖音分享链接，变成 agent 能真正读懂的材料：视频文件 + 按信息量筛过的关键帧 + 元数据。
+把一条抖音分享链接，变成 agent 能真正读懂的材料：视频文件 + 按信息量筛过的关键帧 + 元数据，
+并把看到的东西**沉淀进知识树**，让下一次看视频不是从零开始。
 
 不是"下载个视频就完事"。重点是**让 agent 看见画面**，而不是只读标题和简介。
+
+## 第一次用？按这个顺序读
+
+| 顺序 | 文件 | 什么时候读 |
+|---|---|---|
+| 1 | **`HANDOFF.md`** | **换机器接手时先读这个** —— 前因后果、四条坑、当前进度都在里面 |
+| 2 | `PLAN.md` | 要开始刷视频了，看阶段安排和每批清单 |
+| 3 | `knowledge/INDEX.md` | 动手前看现在已知什么、哪些是空洞 |
+| 4 | 本文件（剩下的部分） | 查具体技术细节和踩过的坑 |
+| 5 | `references/douyin-tech-notes.md` | 抓取出问题时查 |
+| 6 | `references/report-format.md` | 要写观感报告时查 |
+
+**环境没装好先跑这个：**
+
+```bash
+python scripts/setup_env.py --check   # 只体检
+python scripts/setup_env.py           # 缺什么装什么
+```
 
 ## 需要登录吗
 
@@ -312,37 +331,52 @@ python kb.py check                                        # 体检
 
 ## 环境依赖
 
-**所有脚本都用这个解释器跑，不要用别的：**
+> 这一节**不假设任何本机路径**。换机器只需要跑一次 `scripts/setup_env.py`。
 
+### 一句话上手
+
+```bash
+python scripts/setup_env.py --check      # 只体检，不动任何东西
+python scripts/setup_env.py              # 缺什么装什么
 ```
-C:\Users\04kt-13\.workbuddy\binaries\python\envs\video\Scripts\python.exe
-```
 
-已装：playwright 1.65、numpy、Pillow、requests。
+`setup_env.py` 会检查 python / playwright / numpy / Pillow / requests / ffmpeg，
+缺的按镜像装好，最后打印结论。**在新机器上第一件事就是跑它。**
 
-**三个脚本的依赖不一样，容易踩：**
+### 依赖清单
 
-| 脚本 | 需要的包 |
-|------|---------|
-| `douyin_fetch.py` | playwright（**只有这个 venv 有**） |
-| `sample_frames.py` | numpy、Pillow |
-| `make_sheet.py` | Pillow |
+| 包 | 谁需要 | 说明 |
+|---|---|---|
+| `playwright` | `douyin_fetch.py`、`douyin_author.py` | 必须再跑一次 `playwright install chromium` |
+| `numpy`、`Pillow` | `sample_frames.py` | 抽帧算特征 |
+| `Pillow` | `make_sheet.py` | 拼联系表 |
+| `pyyaml` | `knowledge/kb.py` | 知识树读写 |
+| ffmpeg | 除 kb.py 外全部 | 定位逻辑见下 |
 
-系统那个 `python 3.13.12` 有 numpy/Pillow 但**没有 playwright**，
-`envs/video` 原来有 playwright 但**没有 numpy/Pillow**（2026-11-10 已补装）。
-混用会报 `ModuleNotFoundError` 或 `需要 numpy 和 Pillow`。
-**统一用上面那个路径，就不会遇到。**
+### ffmpeg 怎么找
 
-- ffmpeg：`C:\Users\04kt-13\WorkBuddy\2026-09-22-11-24-42\tools\ffmpeg\bin\ffmpeg.exe`（或设 `FFMPEG_BIN`）
+统一在 `scripts/ffmpeg_locator.py`，**不再硬编码任何路径**。查找顺序：
+
+1. 环境变量 `FFMPEG_BIN`
+2. PATH 里的 `ffmpeg`
+3. `pip install imageio-ffmpeg` 附带的静态版（**最省事，不需要系统安装**）
+4. Windows 通用安装位置
+
+找不到会直接报错，并给出三条可照抄的解决办法。
+
+> 历史坑：`douyin_fetch.py` 和 `sample_frames.py` 原来各有一份 `find_ffmpeg`，
+> 两份都硬编码了上一台机器的工程目录。换机器后两处同时失效、报错还不一样。
+> 现在合并成一个模块。
 
 ### 装依赖的坑
 
-**pip 直连 pypi.org 会卡死。** 实测跑了 4 分多钟毫无进展，加镜像 10 秒装完：
+**pip 直连 pypi.org 在国内会卡死。** 实测跑了 4 分多钟毫无进展，加镜像 10 秒装完：
 
 ```bash
 python -m pip install --no-cache-dir \
   -i https://mirrors.tencent.com/pypi/simple/ \
-  --trusted-host mirrors.tencent.com playwright requests numpy Pillow
+  --trusted-host mirrors.tencent.com \
+  playwright requests numpy Pillow pyyaml imageio-ffmpeg
 ```
 
 **playwright 的浏览器二进制也要走镜像**，否则同样卡：
@@ -351,6 +385,13 @@ python -m pip install --no-cache-dir \
 PLAYWRIGHT_DOWNLOAD_HOST=https://npmmirror.com/mirrors/playwright \
   python -m playwright install chromium
 ```
+
+### 输出目录结构（别被多一层 frames 吓到）
+
+`sample_frames.py <video> <out_dir>` 实际会写到 `<out_dir>/frames/`。
+所以调用方习惯传 `.../frames`，就会看到 `.../frames/frames/` 这种双层。
+**这不是 bug，是既有约定** —— 已有产出的目录结构都按这个来的，改了会不一致。
+`make_sheet.py` 要传**里面那层**（真正放 jpg 的目录）。
 
 ## 常见问题对照
 

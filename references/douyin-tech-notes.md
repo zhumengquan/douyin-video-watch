@@ -5,12 +5,17 @@
 
 ## 环境基线（2026-11-10 实测）
 
-| 项目 | 状态 |
+> ⚠️ 下表是**首次实测那台机器**的环境，具体路径仅供参照。
+> **换机器后不要照抄路径**，跑 `python scripts/setup_env.py --check` 拿当前机器的真实状态。
+
+| 项目 | 第一次实测时的状态 |
 |------|------|
-| Chromium (playwright) | `C:\Users\04kt-13\AppData\Local\ms-playwright\chromium-1254`（158.0.8127.18） |
-| Edge | `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe` |
-| ffmpeg / ffprobe | `C:\Users\04kt-13\WorkBuddy\2026-09-22-11-24-42\tools\ffmpeg\bin` |
-| Python venv | `C:\Users\04kt-13\.workbuddy\binaries\python\envs\video`（playwright 1.65 + requests） |
+| Chromium (playwright) | `%LOCALAPPDATA%\ms-playwright\chromium-1254`（158.0.8127.18） |
+| Edge | `%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe` |
+| ffmpeg / ffprobe | 从 PATH 找到（也可设 `FFMPEG_BIN`，或 pip 装 imageio-ffmpeg 兜底） |
+| Python | 需 playwright + numpy + Pillow + requests + pyyaml |
+
+**ffmpeg 定位已统一**到 `scripts/ffmpeg_locator.py`，不再硬编码任何路径。
 
 ### 装依赖的坑
 

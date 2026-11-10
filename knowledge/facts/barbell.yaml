@@ -115,3 +115,31 @@ facts:
   first_seen: '2026-11-10'
   last_seen: '2026-11-10'
   confidence: 0.85
+- id: barbell.desc_has_power_not_on_panel
+  claim: 该条视频简介给出了平均速度、平均功率与峰值功率，但画面面板只显示 Peak V 与 ROM
+  value:
+    desc_mean_v: 0.93
+    desc_peak_v: 1.99
+    desc_mean_power_w: 732
+    desc_peak_power_w: 1563
+    panel_peak_v: 1.99
+    panel_rom: 96.3
+  unit: null
+  topic: barbell
+  sources:
+  - aweme_id: '7701805639253320611'
+    author: Arcus VBT
+    t: 0.0
+    kind: frame
+    detail: 汇总卡只给「80 KG × 1 REP / PEAK V BY REP 1.99 / REP01 ROM 96.3 SPEED 1.99 LOSS -」， 画面中未见平均速度、平均功率、峰值功率任何一项
+  - aweme_id: '7701805639253320611'
+    author: Arcus VBT
+    t: null
+    kind: desc
+    detail: 简介原文「本次分析显示平均速度0.93m/s、峰值1.99m/s，平均功率732W、峰值1563W」
+  status: active
+  note: 这条的价值不在数值，在于信息源差异：Peak V 两处都能拿到（且一致 1.99，互为印证）， 但 Mean V / 功率只存在于简介文字里，画面上读不到。 也就是说「面板给什么」和「简介给什么」不是包含关系，各有一部分独占。
+    引用功率数据时要知道：它无法从画面上复核。
+  first_seen: '2026-11-10'
+  last_seen: '2026-11-10'
+  confidence: 0.5

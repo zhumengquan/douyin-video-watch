@@ -31,20 +31,16 @@ except ImportError:
 
 
 def find_ffmpeg():
-    """找 ffmpeg。优先环境变量，其次 PATH，最后退回已知目录。"""
-    env = os.environ.get("FFMPEG_BIN")
-    if env and os.path.exists(env):
-        return env
-    for name in ("ffmpeg", "ffmpeg.exe"):
-        for p in os.environ.get("PATH", "").split(os.pathsep):
-            cand = os.path.join(p, name)
-            if os.path.exists(cand):
-                return cand
-    # 本机已知位置（历史工程里放的工具链）
-    guess = r"C:\Users\04kt-13\WorkBuddy\2026-09-22-11-24-42\tools\ffmpeg\bin\ffmpeg.exe"
-    if os.path.exists(guess):
-        return guess
-    return None
+    """找 ffmpeg。逻辑统一在 ffmpeg_locator 里，这里只做转发。
+
+    原来这里硬编码了本机某个工程目录，换机器就失效。
+    """
+    try:
+        from ffmpeg_locator import find_ffmpeg as _f
+    except ImportError:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from ffmpeg_locator import find_ffmpeg as _f
+    return _f()
 
 
 def probe_duration(ffmpeg, video):
